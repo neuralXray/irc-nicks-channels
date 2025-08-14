@@ -22,15 +22,18 @@ def find_nicks(nick, ident, ip, chat, log_directory, months):
     if len(log_directories) > months:
         log_directories = log_directories[-months:]
 
-    if (ident == '_') or (ident == '-') or (ident == '.') or (ident == '...') or \
+    if ip.endswith('.79j.0Ar7OI.virtual') and (chat == 'irc.chathispano.com') :
+        if ident == 'irccloud':
+            match_case = -1
+        else:
+            match_case = 1
+    elif (ident == '_') or (ident == '-') or (ident == '.') or (ident == '...') or \
        (ident == 'kiwiirccom') or (ident == 'KiwiIRC') or (ident == 'kvirc') or \
        (ident == 'opirc') or (ident == 'x-cript51') or (ident == 'igloo') or \
        (ident.lower() == 'irc') or (ident.lower() == 'ircap') or (ident == 'irccloud') or \
        (ident == 'yaaic') or (ident == 'androirc') or (ident == 'android') or \
        ip.endswith('.matrix.chathispano.com'):
         match_case = 0
-    elif ip.endswith('.79j.0Ar7OI.virtual') & (chat == 'irc.chathispano.com'):
-        match_case = 1
     else:
         match_case = 2
 
@@ -61,6 +64,8 @@ def find_nicks(nick, ident, ip, chat, log_directory, months):
                         match = (ip_check == ip) or (nick_check.lower() == nick)
                     elif match_case == 1:
                         match = (ident_check == ident) or (nick_check.lower() == nick)
+                    elif match_case == -1:
+                        match = nick_check.lower() == nick
                     else:
                         match = (ip_check == ip) or (ident_check == ident) or \
                                 (nick_check.lower() == nick)
