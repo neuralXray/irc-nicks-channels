@@ -32,7 +32,7 @@ def find_nicks(nick, ident, ip, chat, log_directory, months):
        (ident == 'opirc') or (ident == 'x-cript51') or (ident == 'igloo') or \
        (ident.lower() == 'irc') or (ident.lower() == 'ircap') or (ident == 'irccloud') or \
        (ident == 'yaaic') or (ident == 'androirc') or (ident == 'android') or \
-       ip.endswith('.matrix.chathispano.com'):
+       (ident == 'Username') or ip.endswith('.matrix.chathispano.com'):
         match_case = 0
     else:
         match_case = 2
