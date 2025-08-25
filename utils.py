@@ -137,7 +137,7 @@ def find_nicks(nick, ident, ip, chat, log_directory, months):
 
 
 def printout_nick_history(nick_history, ident_history, nick='', ident='', ip=''):
-    if bool(nick) & bool(ident) & bool(ip):
+    if bool(nick) and bool(ident) and bool(ip):
         printout = f'*\t[{nick}!{ident}@{ip}] '
     else:
         printout = '*\t'
@@ -149,8 +149,8 @@ def printout_nick_history(nick_history, ident_history, nick='', ident='', ip='')
         nick_history[-1] = f'{nick_history[-1]} ! {list_ident_history[0]}'
     else:
         nick_history = \
-        [f'{nick}!{",".join(ident_history[nick])}' if nick in ident_history.keys()
-         else nick for nick in nick_history]
+        [f'{n}!{",".join(ident_history[n])}' if n in ident_history.keys()
+         else n for n in nick_history]
 
     printout = printout + 'Nick(s): ' + ', '.join(nick_history)
 
