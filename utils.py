@@ -158,8 +158,10 @@ def printout_nick_history(nick_history, ident_history, nick='', ident='', ip='')
 
 
 def printout_channel_history(channel_history, nick='', ident='', ip=''):
-    if bool(nick) & bool(ident) & bool(ip):
+    if bool(nick) and bool(ident) and bool(ip):
         printout = f'*\t[{nick}!{ident}@{ip}] '
+    elif nick:
+        printout = f'*\t[{nick}] '
     else:
         printout = '*\t'
 
