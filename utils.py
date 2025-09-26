@@ -71,7 +71,7 @@ def find_nicks(nick, ident, ip, chat, log_directory, months):
                                 (nick_check.lower() == nick)
 
                     if match:
-                        #print(line[:-1])
+                        #print(channel, line[:-1])
                         possible_last_seen = line[:len_date_time - 1]
                         possible_last_seen_datetime = datetime.strptime(possible_last_seen,
                                                                         date_time_format)
@@ -103,7 +103,7 @@ def find_nicks(nick, ident, ip, chat, log_directory, months):
                     nick_check_new = clean_line[clean_line.rindex(' ') + 1:-1]
 
                     if (nick_check.lower() == nick) or (nick_check_new.lower() == nick):
-                        #print(line[:-1])
+                        #print(channel, line[:-1])
                         possible_last_seen = line[:len_date_time - 1]
                         possible_last_seen_datetime = datetime.strptime(possible_last_seen,
                                                                         date_time_format)
