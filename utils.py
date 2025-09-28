@@ -23,10 +23,10 @@ def find_nicks(nick, ident, ip, chat, log_directory, months):
         log_directories = log_directories[-months:]
 
     if ip.endswith('.79j.0Ar7OI.virtual') and (chat == 'irc.chathispano.com') :
-        if ident == 'irccloud':
-            match_case = -1
-        else:
+        if search('^(u|s)id[0-9]+$', ident):
             match_case = 1
+        else:
+            match_case = -1
     elif (ident == '_') or (ident == '-') or (ident == '.') or (ident == '...') or \
        (ident == 'kiwiirccom') or (ident == 'KiwiIRC') or (ident == 'kvirc') or \
        (ident == 'opirc') or (ident == 'x-cript51') or (ident == 'igloo') or \
