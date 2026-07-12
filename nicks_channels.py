@@ -36,7 +36,7 @@ channel_history, nick_history, ident_history, first_seen, last_seen = \
 find_nicks(nick, ident, ip, chat, log_directory, months)
 
 
-printout = printout_nick_history(nick_history, ident_history, nick, ident, ip)
+printout = printout_nick_history(nick_history, ident_history, nick, ident, ip, chat)
 print(printout)
 if nick_history:
     printout = printout_channel_history(channel_history)

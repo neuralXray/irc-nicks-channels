@@ -22,7 +22,8 @@ def find_nicks(nick, ident, ip, chat, log_directory, months):
     if len(log_directories) > months:
         log_directories = log_directories[-months:]
 
-    if ip.endswith('.79j.0Ar7OI.virtual') and (chat == 'irc.chathispano.com') :
+    if ip.endswith('.79j.0Ar7OI.virtual') and \
+       ((chat == 'irc.chathispano.com') or (chat == 'irc-hispano')):
         if search('^(u|s)id[0-9]+$', ident):
             match_case = 1
         else:
@@ -136,9 +137,14 @@ def find_nicks(nick, ident, ip, chat, log_directory, months):
     return channel_history, nick_history_sorted, ident_history, first_seen, last_seen
 
 
-def printout_nick_history(nick_history, ident_history, nick='', ident='', ip=''):
+def printout_nick_history(nick_history, ident_history, nick='', ident='', ip='', chat=''):
     if bool(nick) and bool(ident) and bool(ip):
-        printout = f'*\t[{nick}!{ident}@{ip}] '
+        printout = f'*\t[{nick}!{ident}@{ip}'
+        if ((chat == 'irc.chathispano.com') or (chat == 'irc-hispano')) and \
+           (ip.endswith('.SCpM0M.virtual') or ip.endswith('.jp96d8.virtual') or \
+            ip.endswith('.U3h85d.virtual') or ip.endswith('.Or4b6I.virtual')):
+            printout = f'{printout} (WARNING! CGNAT)'
+        printout = f'{printout}] '
     else:
         printout = '*\t'
 
