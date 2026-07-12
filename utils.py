@@ -142,17 +142,20 @@ def printout_nick_history(nick_history, ident_history, nick='', ident='', ip='')
     else:
         printout = '*\t'
 
-    list_ident_history = sum(ident_history.values(), [])
-    if (len(set(list_ident_history)) == 1) and \
-       (len(nick_history) == len(list_ident_history)) and \
-       (len(nick_history) > 1):
-        nick_history[-1] = f'{nick_history[-1]} ! {list_ident_history[0]}'
-    else:
-        nick_history = \
-        [f'{n}!{",".join(ident_history[n])}' if n in ident_history.keys()
-         else n for n in nick_history]
+    if nick_history:
+        list_ident_history = sum(ident_history.values(), [])
+        if (len(set(list_ident_history)) == 1) and \
+           (len(nick_history) == len(list_ident_history)) and \
+           (len(nick_history) > 1):
+            nick_history[-1] = f'{nick_history[-1]} ! {list_ident_history[0]}'
+        else:
+            nick_history = \
+            [f'{n}!{",".join(ident_history[n])}' if n in ident_history.keys()
+             else n for n in nick_history]
 
-    printout = printout + 'Nick(s): ' + ', '.join(nick_history)
+        printout = printout + 'Nick(s): ' + ', '.join(nick_history)
+    else:
+        printout = printout + 'Not seen'
 
     return printout
 
